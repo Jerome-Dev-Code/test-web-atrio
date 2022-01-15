@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "PERSONNE")
@@ -30,6 +32,7 @@ public class Personne implements Serializable {
     private String firstName;
 	
 	@Column(name = "BIRTHDATE", insertable=true, updatable=true, nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 	
 	 public Personne() {

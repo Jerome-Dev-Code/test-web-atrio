@@ -42,16 +42,15 @@ public class PersonneServiceImpl implements PersonneService{
 	@Transactional(readOnly=false)
 	public Personne savePersonne(Personne personne) throws BusinessResourceException{
 		try {
-				Personne personneToSave = new Personne();
+				
 				if(personne.calculateAge(personne.getBirthDate(), LocalDate.now(Clock.systemUTC())) >= 150) {
 					throw new BusinessResourceException("AgeError", "la personne a 150 ans ou plus");
 				}else {
-					personneToSave.setName(personne.getName());
-					personneToSave.setFirstName(personne.getFirstName());
-					personneToSave.setBirthDate(personne.getBirthDate());
+					Personne personneToSave = new Personne(personne.getName(), personne.getFirstName(), personne.getBirthDate());
 					personneRepository.saveAndFlush(personneToSave);
 					return personneToSave;
 				}
+				
 			
 		}catch(DataIntegrityViolationException ex){
 			logger.error("La personne n'existe pas", ex);

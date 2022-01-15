@@ -31,7 +31,7 @@ public class PersonneController {
 		return new ResponseEntity<List<Personne>>(personnes, HttpStatus.FOUND);
 	}
 	
-	@PostMapping(value = "/savepersonne")
+	@PostMapping(value = "/personne")
 	@Transactional
 	public ResponseEntity<Personne> saveUser(@RequestBody Personne personne) {
 		
